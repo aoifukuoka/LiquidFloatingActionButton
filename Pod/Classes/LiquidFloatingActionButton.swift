@@ -82,6 +82,10 @@ open class LiquidFloatingActionButton : UIView {
             baseView.closeDuration = closeDuration
         }
     }
+    
+    @IBInspectable open var openRotationDuration: Double  = 0.2
+    @IBInspectable open var closeRotationDuration: Double  = 0.2
+    
 
     fileprivate var plusLayer   = CAShapeLayer()
     fileprivate let circleLayer = CAShapeLayer()
@@ -123,7 +127,7 @@ open class LiquidFloatingActionButton : UIView {
     open func open() {
         
         // rotate plus icon
-        CATransaction.setAnimationDuration(0.8)
+        CATransaction.setAnimationDuration(openRotationDuration)
         self.plusLayer.transform = CATransform3DMakeRotation((CGFloat(M_PI) * rotationDegrees) / 180, 0, 0, 1)
 
         let cells = cellArray()
@@ -140,7 +144,7 @@ open class LiquidFloatingActionButton : UIView {
     open func close() {
         
         // rotate plus icon
-        CATransaction.setAnimationDuration(0.8)
+        CATransaction.setAnimationDuration(closeRotationDuration)
         self.plusLayer.transform = CATransform3DMakeRotation(0, 0, 0, 1)
     
         self.baseView.close(cellArray())
