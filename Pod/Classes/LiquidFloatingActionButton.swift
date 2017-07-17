@@ -70,6 +70,18 @@ open class LiquidFloatingActionButton : UIView {
     }
     
     @IBInspectable open var rotationDegrees: CGFloat = 45.0
+    
+    @IBInspectable open var openDuration: CGFloat  = 0.6 {
+        didSet {
+            baseView.openDuration = openDuration
+        }
+    }
+    
+    @IBInspectable open var closeDuration: CGFloat  = 0.2 {
+        didSet {
+            baseView.closeDuration = closeDuration
+        }
+    }
 
     fileprivate var plusLayer   = CAShapeLayer()
     fileprivate let circleLayer = CAShapeLayer()
@@ -160,7 +172,7 @@ open class LiquidFloatingActionButton : UIView {
         plusLayer.path = path.cgPath
         return plusLayer
     }
-    
+
     fileprivate func drawCircle() {
         self.circleLayer.cornerRadius = self.frame.width * 0.5
         self.circleLayer.masksToBounds = true
@@ -268,8 +280,8 @@ class ActionBarBaseView : UIView {
 
 class CircleLiquidBaseView : ActionBarBaseView {
 
-    let openDuration: CGFloat  = 0.6
-    let closeDuration: CGFloat = 0.2
+    var openDuration: CGFloat  = 0.6
+    var closeDuration: CGFloat = 0.2
     let viscosity: CGFloat     = 0.65
     var animateStyle: LiquidFloatingActionButtonAnimateStyle = .up
     var color: UIColor = UIColor(red: 82 / 255.0, green: 112 / 255.0, blue: 235 / 255.0, alpha: 1.0) {
